@@ -1,0 +1,41 @@
+{% extends 'base.html'%} {% import 'bootstrap/wtf.html' as wtf%}{% import 'macros.html' as macro%}
+<!-- Styles block -->
+
+{% block styles%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {% endblock %}
+
+
+<!-- Content block -->
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row" style="padding-left: 30px; ">
+        {% if current_user.is_authenticated %}
+        <h1>Hello {{current_user.username}},</h1>
+        {% else %}
+        <h1>Hello stranger</h1>
+        {% endif %}
+        <h2>Welcome to Pitches Site.</h2>
+
+
+        <p><a style="background-color: white; color: black;" href=" {{url_for('main.pitch_form')}} " class="btn btn-primary" role="button">Comment</a></p>
+
+    </div>
+    <div class="row">
+        {% for pitch in pitches %}
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3> {{pitch.title}}</h3>
+                    <p>Category: {{pitch.category}}</p>
+                    <p>Pitch: {{pitch.pitch_text}}</p>
+                    <p><a style="background-color: black; color: white;" href=" {{url_for('main.comment',pitch_id = pitch.id)}} " class="btn btn-primary" role="button">Comment</a></p>
+                </div>
+            </div>
+        </div> {% endfor %}
+
+    </div>
+
+</div>
+{% endblock%}
