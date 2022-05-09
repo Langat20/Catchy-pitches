@@ -55,3 +55,13 @@ def comment(pitch_id):
 
     return render_template('comment.html',comment_form=comment_form,pitches=pitches,comments=comments,user=user)
     
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+    user_id = current_user._get_current_object().id
+    pitch = Pitches.query.filter_by(user_id = user_id).all()
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user,pitch=pitch)
+
