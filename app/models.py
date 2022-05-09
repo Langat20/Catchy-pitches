@@ -69,3 +69,25 @@ class Comments(db.Model):
     
     def __repr__(self):
         return f'Comment {self.pitch_comment}'
+class Pitches(db.Model):
+    
+    __tablename__ = 'pitches'
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(255))
+    category = db.Column(db.String(255))
+    pitch_text = db.Column(db.String(400))
+    posted = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    likes = db.relationship('Likes', backref = 'pitch', lazy = 'dynamic')
+    dislikes = db.relationship('Dislikes', backref = 'pitch', lazy = 'dynamic')
+    comments = db.relationship('Comments', backref = 'pitch', lazy='dynamic')
+    def save_p(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_category(cls, category):
+        pitches = Pitches.query.filter_by(category=category).all()
+        return pitches
+  
+    
