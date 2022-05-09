@@ -84,3 +84,18 @@ def update_profile(uname):
 
     return render_template('profile/update.html',form =form)
 
+@main.route('/like/<int:id>',methods=['GET','POST'])
+@login_required
+def like(id):
+    get_pitches = Likes.get_likes(id)
+    valid_string = f'{current_user.id}: {id}'
+    for pitch in get_pitches:
+        to_str = f'{pitch}'
+        print(valid_string + " " + to_str)
+        if valid_string == to_str:
+            return redirect(url_for('main.index',id=id))
+        else:
+            new_like = Likes(user=current_user,pitch_id=id)
+            new_like.save()
+            return redirect(url_for('main.index',id=id))
+    
