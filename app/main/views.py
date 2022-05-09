@@ -21,3 +21,18 @@ def index():
     
     return render_template('index.html',pitches = pitches, email = email,business = business,social = social,title = title)
 
+@main.route('/pitch/',methods = ['GET','POST'])
+@login_required
+def pitch_form():
+    pitch_form = PitchForm()
+    if pitch_form.validate_on_submit():
+        title = pitch_form.title.data
+        pitch_text = pitch_form.pitch_text.data
+        category = pitch_form.category.data
+        
+        new_pitches = Pitches(pitch_text=pitch_text,category=category,user_id=current_user._get_current_object().id,title = title)
+        new_pitches.save_p()
+        return redirect(url_for('main.index', ))
+
+    return render_template('new_pitch.html', pitch_form=pitch_form )
+
