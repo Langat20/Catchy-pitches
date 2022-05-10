@@ -4,7 +4,8 @@ from ..models import User
 from .forms import LoginForm,RegistrationForm
 from .. import db
 from flask_login import login_user,logout_user,login_required
-from ..email import mail_message
+# from ..email import mail_message
+from app.email import mail_message
 
 
 
@@ -30,7 +31,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        # mail_message("Welcome to Pitch Site","email/welcome_user",user.email,user=user)
+        mail_message("Welcome to Pitch Site","email/welcome",user.email,user=user)
 
         return redirect(url_for('auth.login'))
       

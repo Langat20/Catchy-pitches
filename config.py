@@ -3,7 +3,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = ('SECRET_KEY')
 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:langat20@localhost/pitches'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -27,8 +27,8 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:langat20@localhost/Pitches'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:langat20@localhost/Pitches'
+    # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 
 
 class TestConfig(Config):
