@@ -17,7 +17,7 @@ def index():
     social = Pitches.query.filter_by(category = 'Social Media').all()
     title = 'Home - Welcome to Pitches site'
 
-    
+    # return 'returned'
     return render_template('index.html',pitches = pitches, email = email,business = business,social = social,title = title)
 
 @main.route('/pitch/',methods = ['GET','POST'])
