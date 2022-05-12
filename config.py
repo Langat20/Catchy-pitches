@@ -27,8 +27,14 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:langat20@localhost/Pitches'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:langat20@localhost/Pitches'
     SQLALCHEMY_DATABASE_URI=os.environ.get('postgres://exagensvhukiqx:8ba9baf6e6b3074f0ab62a40356a5b96c9575e3f3609ebd733bf04c925311500@ec2-107-22-238-112.compute-1.amazonaws.com:5432/d92h52n2rrp8jo')
+    
+    uri = os.getenv('DATABASE_URL')
+    if uri and uri.startswith('postgres://'):
+         uri = uri.replace('postgres://', 'postgresql://', 1)
+        
+         SQLALCHEMY_DATABASE_URI=uri
     
 
 class TestConfig(Config):
@@ -45,7 +51,7 @@ class DevConfig(Config):
 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:langat20@localhost/pitches'
     
-DEBUG = True
+    DEBUG = True
 
 
  
