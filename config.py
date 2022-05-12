@@ -28,7 +28,7 @@ class ProdConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:langat20@localhost/Pitches'
-    SQLALCHEMY_DATABASE_URI = os.environ.get("postgresql://exagensvhukiqx:8ba9baf6e6b3074f0ab62a40356a5b96c9575e3f3609ebd733bf04c925311500@ec2-107-22-238-112.compute-1.amazonaws.com:5432/d92h52n2rrp8jo")
+    SQLALCHEMY_DATABASE_URI=os.environ.get('postgresql://exagensvhukiqx:8ba9baf6e6b3074f0ab62a40356a5b96c9575e3f3609ebd733bf04c925311500@ec2-107-22-238-112.compute-1.amazonaws.com:5432/d92h52n2rrp8jo')
     
     # SQLALCHEMY_DATABASE_URI ='postgresql://fskxnlnygsjyvr:2bb31532ffa5036dad1d954632c42bc572041281330a7ea25d20b6c52e0a1559@ec2-3-224-164-189.compute-1.amazonaws.com:5432/d9uc8lt63tehf6'
 
