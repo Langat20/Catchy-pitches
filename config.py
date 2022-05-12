@@ -12,7 +12,7 @@ class Config:
     MAIL_PORT = 587
     MAIL_USE_TLS=True
     MAIL_USERNAME='kipkuruie7.lang@gmail.com'
-    MAIL_PASSWORD='evanskip2015'
+    MAIL_PASSWORD='evan1234'
     SUBJECT_PREFIX='Pitches'
     SENDER_EMAIL='kipkuruie7.lang@gmail.com'
 
