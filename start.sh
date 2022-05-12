@@ -1,4 +1,4 @@
-export SECRET_KEY='flask1234'
+export SECRET_KEY='FlaskWTFSecretKey'
 export MAIL_USERNAME='kipkuruie7.lang@gmail.com'
 export MAIL_PASSWORD='langat20'
 
